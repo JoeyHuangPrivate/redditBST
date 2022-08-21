@@ -1,6 +1,6 @@
-var query = "all";
+//var query = "all";
 var subReddit = "paintballBST";
-var searchTerm = "masks";
+var query = "masks";
 
 $.ajax({
     type:"GET",
@@ -20,19 +20,23 @@ $.ajax({
             var h2Element= document.createElement("h2");
             var h3Element= document.createElement("h3");
             
-            //var imgElement= document.createElement("img");
-            //var thumbNail= children[i].data.thumbNail;
+            var imgElement= document.createElement("img");
+            var thumbnail= children[i].data.thumbnail;
+
             colElement.setAttribute("class", "col-3");
             rowElement.appendChild(colElement);
             colElement.appendChild(h2Element);
             colElement.appendChild(h3Element);
             
-            //colElement.appendChild(imgElement);
-
-            //h2Element.innerHTML=children[i].data.selftext;
+            // if(thumbnail !== "self"){
+            //     colElement.appendChild(imgElement);
+            // }
+            //ternary form
+            (thumbnail!=="self")?colElement.appendChild(imgElement):"";
+            
             h2Element.innerHTML=children[i].data.title;
             h3Element.innerHTML=children[i].data.author;
-            //imgElement.setAttribute("src",thumbNail);
+            imgElement.setAttribute("src",thumbnail);
 
         }
     }
